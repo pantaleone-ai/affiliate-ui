@@ -1,13 +1,10 @@
+'use client';
+
 import React from 'react';
-import { ShoppingCart, Star, ExternalLink } from 'lucide-react';
+import { ShoppingCart, Star } from 'lucide-react';
 import { Product } from '@/lib/fetchProducts';
 import { siteConfig } from '@/site.config';
-import { cn } from '@/lib/utils'; // Assuming you have a utils file, if not I'll inline the logic or use template literals
-
-// Simple utility if you don't have clsx/tailwind-merge set up yet
-function classNames(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(' ');
-}
+import { cn } from '@/lib/utils';
 
 interface ProductCardProps {
   product: Product;
@@ -26,7 +23,8 @@ export function ProductCard({ product }: ProductCardProps) {
     stone: 'bg-stone-800 hover:bg-stone-900 text-white',
   };
   
-  const btnClass = themeColors[siteConfig.themeColor] || themeColors.emerald;
+  // Safe access to theme color with fallback
+  const btnClass = themeColors[siteConfig.themeColor as keyof typeof themeColors] || themeColors.emerald;
 
   return (
     <div className="group relative flex flex-col rounded-2xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-gray-100">
@@ -44,7 +42,7 @@ export function ProductCard({ product }: ProductCardProps) {
           alt={product.title}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           loading="lazy"
-          // Fallback for the demo if Unsplash source is slow
+          // This event handler requires 'use client'
           onError={(e) => {
             (e.target as HTMLImageElement).src = 'https://placehold.co/600x400/e2e8f0/1e293b?text=Product';
           }}
@@ -83,7 +81,7 @@ export function ProductCard({ product }: ProductCardProps) {
             href={product.affiliateLink}
             target="_blank"
             rel="noopener noreferrer"
-            className={classNames(
+            className={cn(
               "flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold shadow-sm transition-all focus:ring-2 focus:ring-offset-2",
               btnClass
             )}
