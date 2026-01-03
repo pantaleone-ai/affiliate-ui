@@ -1,21 +1,21 @@
-import { type LucideIcon, Tent, Flame, Compass, Mountain } from 'lucide-react';
-
 export interface SiteConfig {
   nicheName: string;
   siteTitle: string;
-  themeColor: 'emerald' | 'blue' | 'rose' | 'amber' | 'indigo'; // Restrict for type safety/Tailwind mapping
+  themeColor: 'emerald' | 'blue' | 'rose' | 'amber' | 'indigo' | 'stone'; 
   affiliateTag: string;
   keywords: string[];
   heroHeadline: string;
   heroSubheadline: string;
+  heroImage: string; // Added for the visual upgrade
 }
 
 export const siteConfig: SiteConfig = {
   nicheName: "Wilderness Gear",
-  siteTitle: "Top Camping Equipment Deals",
-  themeColor: "emerald",
+  siteTitle: "Premium Outdoor Equipment",
+  themeColor: "emerald", // Deep forest green vibe
   affiliateTag: "camping-20",
-  keywords: ["Tents", "Sleeping Bags", "Camping Stoves", "Hiking Backpacks"],
-  heroHeadline: "Survive the Wild in Comfort",
-  heroSubheadline: "Curated deals on the best camping and hiking gear, updated daily.",
+  keywords: ["Ultralight Tents", "4-Season Sleeping Bags", "Portable Camp Stoves", "Tactical Backpacks"],
+  heroHeadline: "Answer the Call of the Wild",
+  heroSubheadline: "Equip yourself with professional-grade gear for your next expedition. Curated deals, updated daily.",
+  heroImage: "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=2070&auto=format&fit=crop", // A real stunning camping shot
 };
